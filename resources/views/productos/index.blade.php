@@ -17,7 +17,7 @@
                     <div class="card w-72 bg-base-100 shadow-xl">
                         <figure>
                             @if(file_exists('images/productos/producto_' . $producto->id . '.jpg'))
-                                <img src="{{ asset('images/productos/producto_' . $producto->id . '.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                                <img src="{{ asset('images/productos/producto_' . $producto->id . '.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg h-40 w-full object-cover">
                             @else
                                 <img src="{{ asset('images/productos/default.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
                             @endif
