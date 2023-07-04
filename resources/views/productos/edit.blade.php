@@ -6,13 +6,29 @@
     <div class="flex justify-center">
         <div class="card w-96 shadow-2xl bg-base-100">
             <div class="card-body">
-                <form action="{{route('productos.update', $producto)}}" method="POST">
+                {{-- Mostrar mensajes de error --}}
+                <div>
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="badge badge-warning">{{$error}}</div>
+                        @endforeach
+                    @endif
+                </div>
+                {{-- Imagen --}}
+                <div>
+                    @if(file_exists('images/productos/producto_' . $producto->id . '.jpg'))
+                        <img src="{{ asset('images/productos/producto_' . $producto->id . '.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                    @else
+                        <img src="{{ asset('images/productos/default.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                    @endif
+                </div>
+                <form action="{{route('productos.update', $producto)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     {{-- Categoria --}}
                     <div class="form-control">
                         <label class="label" for="categoria_id">
-                            <span class="label-text">Categorías</span>
+                            <span class="label-text">Categoría</span>
                         </label>
                         <select name="categoria_id" class="select select-bordered">
                             @foreach ($categorias as $categoria)
@@ -30,6 +46,13 @@
                         <span class="label-text">Nombre</span>
                     </label>
                     <input type="text" name="nombre" placeholder="Nombre del producto" class="input input-bordered" maxlength="100" value="{{$producto->nombre}}" required />
+                    </div>
+                    {{-- Imagen --}}
+                    <div class="form-control">
+                        <label class="label" for="imagen">
+                            <span class="label-text">Cambiar imagen</span>
+                        </label>
+                        <input type="file" name="imagen" class="file-input file-input-bordered file-input-success file-input-sm w-full max-w-xs"  accept=".jpg" />
                     </div>
                     {{-- Descripcion --}}
                     <div class="form-control">

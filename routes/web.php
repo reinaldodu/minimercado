@@ -20,7 +20,10 @@ use App\Http\Controllers\PedidoController;
 
 Route::view('/','inicio')->name('inicio');
 
+//Ruta para categorias
 Route::resource('/categorias', CategoriaController::class)->except(['show']);
+
+//Ruta para productos
 Route::resource('/productos', ProductoController::class);
 
 //Ruta de registro de usuarios

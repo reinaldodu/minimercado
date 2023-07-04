@@ -15,7 +15,13 @@
                 {{-- No muestra a los clientes productos que tengan stock 0 --}}
                 @if (auth()->user()->rol == 'admin' || $producto->stock > 0) 
                     <div class="card w-72 bg-base-100 shadow-xl">
-                        <figure><img src="https://source.unsplash.com/random/400x200/?{{$producto->categoria->nombre}}&sig={{$producto->id}}" alt="{{$producto->nombre}}"></figure>
+                        <figure>
+                            @if(file_exists('images/productos/producto_' . $producto->id . '.jpg'))
+                                <img src="{{ asset('images/productos/producto_' . $producto->id . '.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                            @else
+                                <img src="{{ asset('images/productos/default.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                            @endif
+                        </figure>
                         <div class="card-body">
                             <h2 class="card-title">{{$producto->nombre}}</h2>
                             <div class="badge badge-success badge-outline">Categoría: {{$producto->categoria->nombre}}</div>
