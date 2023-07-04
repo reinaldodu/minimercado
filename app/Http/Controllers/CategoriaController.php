@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    //Protejemos las rutas de este controlador con el middleware auth y admin (autenticado y rol de admin)
+    //Protegemos las rutas de este controlador con el middleware auth y admin (autenticado y rol de admin)
     public function __construct()
     {
         //Sólo los usuarios autenticados y con rol de admin pueden acceder a todas las rutas de este controlador
