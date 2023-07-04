@@ -5,8 +5,6 @@ El desarrollo de la aplicación web **Minimercado** tiene como objetivo principa
 > *Recuerde el significado del acrónimo **CRUD**: (Create - Read - Update - Delete) que son las operaciones básicas en una base de datos para crear, leer, actualizar y eliminar registros.*
 > 
 
-**Tabla de contenidos**
-
 ## Descripción general
 
 La aplicación **Minimercado** será de tipo "**full stack**", lo que implica el desarrollo tanto del **frontend** (la interfaz de usuario, usando vistas) como del **backend** (la lógica del servidor, usando modelos y controladores).
