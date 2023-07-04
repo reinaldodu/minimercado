@@ -17,10 +17,6 @@ En la **primera fase** se realizarán las configuraciones iniciales de la aplica
 
 Se contará con dos tipos de usuarios (roles): el **administrador** (rol: **admin**), que tiene todos los permisos sobre el sistema para crear, consultar y actualizar productos, categorías y usuarios; y el **cliente** (rol: **user**)**,** que puede acceder al sistema para generar un nuevo pedido.
 
-A continuación se muestra el modelo relacional de la aplicación:
-
-![ModeloMiniMercado.png](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/ModeloMiniMercado.png)
-
 ## Fase No.1: Administración de categorías y productos
 
 En esta fase estaremos usando las operaciones básicas (CRUD) de una base de datos, para administrar las categorías y productos. También se crearán las rutas necesarias para ejecutar dichas operaciones (usando el  archivo **`routes/web.php`**).  Adicionalmente estaremos creando las vistas (frontend) apoyándonos con otro framework de última generación llamado [Tailwindcss](https://tailwindcss.com).
@@ -42,7 +38,6 @@ Para ello abrimos el archivo **.env** y ****modificamos las siguientes variables
 | DB_USERNAME=root | Usuario de la base de datos.  Si estamos usando Laragon dejamos el usuario como root. |
 | DB_PASSWORD= | Password del usuario de la base de datos. Si estamos usando Laragon dejamos el campo en blanco. |
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled.png)
 
 ### Instalación y configuración de Tailwindcss y DaisyUI
 
@@ -191,7 +186,6 @@ Ahora crearemos la estructura de los campos de las tablas a través de los archi
 
 **Campos para la tabla categorias:**
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%201.png)
 
 ```php
 public function up(): void
@@ -207,7 +201,6 @@ public function up(): void
 
 **Campos para la tabla productos:**
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%202.png)
 
 ```php
 public function up(): void
@@ -229,11 +222,9 @@ Después de configurar los campos necesarios, ejecutaremos el comando `**php art
 > ***Tenga en cuenta**:  Antes de ejecutar el comando, verificar que se encuentra dentro del directorio de la aplicación minimercado.*
 > 
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%203.png)
 
 El sistema mostrará una advertencia, diciendo que no existe la base de datos ‘minimercado’ y nos preguntará si deseamos crearla.  Escribimos **yes** para confirmar, y el sistema procederá a crear la base de datos y las tablas (por defecto laravel tiene configurada algunas migraciones adicionales y creará también estas tablas).
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%204.png)
 
 Si desea verificar la creación de la base de datos, puede ingresar a cualquier cliente de base de datos mysql (Ej: Phpmyadmin, Mysql Workbench).
 
@@ -269,7 +260,6 @@ Route::resource('/productos',ProductoController::class); //Crea 7 rutas para el 
 
 Con el comando `php artisan route:list` podemos verificar las 7 rutas creadas por Laravel para manipular las categorias y los productos.
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%205.png)
 
 ### Iniciando con el CRUD de Categorías:
 
@@ -691,7 +681,6 @@ Para listar los productos estamos usando el componente **card** de DaisyUI para 
 
 Así se ve la vista de los productos en 4 columas…
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%206.png)
 
 **Vista edit: Editar un producto**
 
@@ -2130,4 +2119,3 @@ También debemos actualizar la vista de **listar productos** (`**resources/views
 @endsection
 ```
 
-![Untitled](Proyecto%20MiniMercado%20Laravel%20a6f35a12b7884a0ea64085a01c64b223/Untitled%207.png)
