@@ -113,6 +113,10 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
+        //eliminar imagen si existe
+        if (file_exists(public_path('images/productos/producto_'.$producto->id.'.jpg'))) {
+            unlink(public_path('images/productos/producto_'.$producto->id.'.jpg'));
+        }
         return redirect()->route('productos.index')->with('info', 'Producto eliminado con éxito');
     }
 }
