@@ -6,15 +6,20 @@
     <div class="flex justify-center">
         <div class="card w-96 shadow-2xl bg-base-100">
             <div class="card-body">
-                <figure><img class="rounded-xl" src="https://source.unsplash.com/random/400x200/?{{$producto->categoria->nombre}}&sig={{$producto->id}}" alt="{{$producto->nombre}}"></figure>
-                    <div class="card-body">
-                        <p class="text-sm">{{$producto->descripcion}}</p>
+                <figure>
+                    @if(file_exists('images/productos/producto_' . $producto->id . '.jpg'))
+                        <img src="{{ asset('images/productos/producto_' . $producto->id . '.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg h-40 w-full object-cover">
+                    @else
+                        <img src="{{ asset('images/productos/default.jpg') }}" alt="{{$producto->nombre}}" class="rounded-t-lg">
+                    @endif
+                </figure>
+                <p class="text-sm">{{$producto->descripcion}}</p>
 
-                        {{-- precio y stock--}}
-                        <div class="flex space-x-4">
-                            <div class="badge badge-neutral">${{number_format($producto->precio, 0, ',', '.')}}</div>
-                            <div class="badge badge-ghost">{{$producto->stock}} en stock</div>
-                        </div>
+                {{-- precio y stock--}}
+                <div class="flex space-x-4">
+                    <div class="badge badge-neutral">${{number_format($producto->precio, 0, ',', '.')}}</div>
+                    <div class="badge badge-ghost">{{$producto->stock}} en stock</div>
+                </div>
                 <form action="{{route('pedidos.store')}}" method="POST">
                     @csrf
                         <input type="hidden" name="producto_id" value="{{$producto->id}}">

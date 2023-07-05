@@ -84,7 +84,7 @@ class PedidoController extends Controller
     {
         $pedido->estado = $request->estado;
         $pedido->save();
-        return to_route('pedidos.index')->with('info', 'Se cambió el estado del pedido');
+        return to_route('pedidos.index')->with('info', 'Se cambió el estado del pedido #' . $pedido->id);
     }
 
     /**
