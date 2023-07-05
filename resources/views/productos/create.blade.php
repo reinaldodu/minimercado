@@ -6,14 +6,6 @@
     <div class="flex justify-center">
         <div class="card w-96 shadow-2xl bg-base-100">
             <div class="card-body">
-                {{-- Mostrar mensajes de error --}}
-                <div>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <div class="badge badge-warning">{{$error}}</div>
-                        @endforeach
-                    @endif
-                </div>
                 {{-- Formulario para crear producto --}}
                 <form action="{{route('productos.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -40,7 +32,7 @@
                         <label class="label" for="imagen">
                             <span class="label-text">Imagen</span>
                         </label>
-                        <input type="file" name="imagen" class="file-input file-input-bordered file-input-success file-input-sm w-full max-w-xs"  accept=".jpg" />
+                        <input type="file" name="imagen" class="file-input file-input-bordered file-input-success file-input-sm w-full max-w-xs"  accept=".jpg" required />
                     </div>
                     {{-- Descripcion --}}
                     <div class="form-control">

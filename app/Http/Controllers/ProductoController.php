@@ -43,25 +43,6 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'categoria_id' => 'required',
-            'precio' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'imagen' => 'required|image|max:4096'
-        ],
-        [
-            'nombre.required' => 'El nombre del producto es obligatorio',
-            'categoria_id.required' => 'La categoría del producto es obligatoria',
-            'precio.required' => 'El precio del producto es obligatorio',
-            'precio.numeric' => 'El precio del producto debe ser un número',
-            'stock.required' => 'El stock del producto es obligatorio',
-            'stock.numeric' => 'El stock del producto debe ser un número',
-            'imagen.required' => 'La imagen del producto es obligatoria',
-            'imagen.image' => 'La imagen del producto debe ser una imagen',
-            'imagen.max' => 'La imagen del producto no debe pesar más de 4MB'
-        ]
-    );
         Producto::create($request->all());
         //Guardar imagen
         $producto = Producto::latest('id')->first();

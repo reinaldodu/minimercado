@@ -6,14 +6,6 @@
     <div class="flex justify-center">
         <div class="card w-96 shadow-2xl bg-base-100">
             <div class="card-body">
-                {{-- Mostrar mensajes de error --}}
-                <div>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <div class="badge badge-warning">{{$error}}</div>
-                        @endforeach
-                    @endif
-                </div>
                 {{-- Imagen --}}
                 <div>
                     @if(file_exists('images/productos/producto_' . $producto->id . '.jpg'))
