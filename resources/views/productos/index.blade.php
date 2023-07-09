@@ -39,11 +39,14 @@
                                     {{-- Editar --}}
                                     <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-warning btn-xs">Editar</a>
                                     {{-- Eliminar --}}
-                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('¿Desea eliminar el producto {{ $producto->nombre }}?')" class="btn btn-error btn-xs">Eliminar</button>
-                                    </form>
+                                    {{-- Si existen pedidos con este producto no se puede eliminar --}}
+                                    @if ($producto->pedidos->count() == 0)
+                                        <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('¿Desea eliminar el producto {{ $producto->nombre }}?')" class="btn btn-error btn-xs">Eliminar</button>
+                                        </form>
+                                    @endif
                                 @else
                                     {{-- si el usuario es cliente muestra realizar una orden --}}
                                     <a href="{{ route('pedidos.create', $producto->id) }}" class="btn btn-primary btn-xs">Ordenar</a>
