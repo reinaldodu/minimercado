@@ -35,15 +35,10 @@ class ProductoController extends Controller
             'descripcion' => ['nullable', 'string', 'max:255'],
             'precio' => ['required', 'integer', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
-            'categoria_id' => ['required', 'integer', 'exists:categorias,id'], //exists valida que el id exista en la tabla categorias
-            'imagen' => ['nullable', 'image', 'max:4096']
+            'categoria_id' => ['required', 'integer', 'exists:categorias,id'] //exists valida que el id exista en la tabla categorias
         ]);
         //Crear el producto
-        $producto = Producto::create($datos);
-        //Guardar la imagen si existe
-        if ($request->hasFile('imagen')) {
-            $request->file('imagen')->move(public_path('images/productos'), 'producto_'.$producto->id.'.jpg');
-        }
+        $producto = Producto::create($datos);       
         return response()->json(['success' => true, 'message' => 'Producto creado'], 201); //201: Created
     }
 
@@ -82,11 +77,7 @@ class ProductoController extends Controller
         if ($producto->pedidos->count() > 0) {
             return response()->json(['success' => false, 'message' => 'No se puede eliminar el producto porque tiene pedidos asociados'], 409); //409: Conflict
         }
-        $producto->delete();
-        //eliminar imagen si existe
-        if (file_exists(public_path('images/productos/producto_'.$producto->id.'.jpg'))) {
-            unlink(public_path('images/productos/producto_'.$producto->id.'.jpg'));
-        }
+        $producto->delete();       
         return response()->json(['success' => true, 'message' => 'Producto eliminado'], 204); //204: No content
     }
 }

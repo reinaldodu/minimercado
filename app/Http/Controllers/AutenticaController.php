@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AutenticaController extends Controller
 {
+    public function __construct()
+    {
+        //Sólo los usuarios autenticados pueden acceder a los métodos perfil, perfilUpdate y passwordUpdate
+        $this->middleware('auth')->only(['perfil', 'perfilUpdate', 'passwordUpdate']);
+    }
+    
     public function registro(Request $request){
         $request->validate([
             'name' => 'required|max:255',

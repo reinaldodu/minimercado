@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo', 'Ordenar Producto')
-@section('cabecera', $producto->nombre)
+@section('cabecera', 'Nuevo pedido - ' . $producto->nombre)
 
 @section('contenido') 
     <div class="flex justify-center">
